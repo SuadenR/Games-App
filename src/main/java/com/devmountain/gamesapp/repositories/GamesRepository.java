@@ -9,10 +9,4 @@ import java.util.Optional;
 
 @Repository
 public interface GamesRepository extends JpaRepository<Games, Long> {
-//    Optional<Games> findByGameTitle(String gameTitle);
-//    Optional<Games> findByPublisher(String publisher);
-//    Optional<Games> findByGenre(String genre);
-//    Optional<Games> findByPlatform(String platform);
-//    Optional<Games> findByRating();
-
 }

@@ -2,6 +2,7 @@ package com.devmountain.gamesapp.dtos;
 
 import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.Games;
+import com.devmountain.gamesapp.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class FavoritesDto implements Serializable {
 
     private Long id;
 
-    private Favorites favorites;
+    private User user;
 
     private Set<Games> gamesSet = new HashSet<>();
 
@@ -24,8 +25,8 @@ public class FavoritesDto implements Serializable {
         if (favorites.getId() != null){
             this.id = favorites.getId();
         }
-        if (favorites.getFavorites() != null){
-            this.favorites = favorites.getFavorites();
+        if (favorites.getUser() != null){
+            this.user = favorites.getUser();
         }
         if (favorites.getGamesSet() != null){
             this.gamesSet = favorites.getGamesSet();

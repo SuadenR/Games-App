@@ -18,7 +18,7 @@ public class GamesServiceImpl implements GamesService{
     public List<String> addGames(GamesDto gamesDto){
         List<String> response = new ArrayList<>();
         Games games = new Games(gamesDto);
-        gamesRepository.saveAllAndFlush(games);
+        gamesRepository.saveAndFlush(games);
         response.add("http://localhost:8081/new-games.html");
         return response;
     }

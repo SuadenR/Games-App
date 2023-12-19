@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 @RestController
-@RequestMapping("/api/v2/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -26,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public List<String> userLogin(@RequestBody UserDto userDto) {
-        return userService.userLogin(userDto);
+    public  List<String> userLogin(@RequestBody UserDto userDto) {
+        return  userService.userLogin(userDto);
     }
 }

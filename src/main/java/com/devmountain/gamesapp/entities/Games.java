@@ -1,6 +1,7 @@
 package com.devmountain.gamesapp.entities;
 
 import com.devmountain.gamesapp.dtos.GamesDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,12 +36,8 @@ public class Games{
     @Column
     private String rating;
 
-    @ManyToMany
-    @JsonManagedReference
-    private Set<Games> gamesSet = new HashSet<>();
-
-    @ManyToMany
-    @JsonManagedReference
+    @ManyToMany(mappedBy = "gamesSet", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JsonBackReference
     private Set<Favorites> favoritesSet = new HashSet<>();
 
     public Games(GamesDto gamesDto){

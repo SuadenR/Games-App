@@ -23,15 +23,19 @@ public class Favorites{
 
     @ManyToOne
     @JsonBackReference
-    private Favorites favorites;
+    private User user;
 
-    @ManyToMany(mappedBy = "Games", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(
+            name = "FavoriteGame",
+            joinColumns = @JoinColumn(name = "favorite_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id")
+    )
     private Set<Games> gamesSet = new HashSet<>();
 
     public Favorites(FavoritesDto favoritesDto){
-        if(favoritesDto.getFavorites() != null){
-            this.favorites = favoritesDto.getFavorites();
+        if(favoritesDto.getUser() != null){
+            this.user = favoritesDto.getUser();
         }
         if (favoritesDto.getGamesSet() != null){
             this.gamesSet = favoritesDto.getGamesSet();

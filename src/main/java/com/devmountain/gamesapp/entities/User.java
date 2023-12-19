@@ -29,7 +29,7 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "Users", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonManagedReference
     private Set<Favorites> favoritesSet = new HashSet<>();
 
