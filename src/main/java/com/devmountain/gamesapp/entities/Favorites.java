@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
@@ -31,6 +32,7 @@ public class Favorites{
             joinColumns = @JoinColumn(name = "favorite_id"),
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )
+    @EqualsAndHashCode.Exclude
     private Set<Games> gamesSet = new HashSet<>();
 
     public Favorites(FavoritesDto favoritesDto){

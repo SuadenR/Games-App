@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
@@ -16,7 +17,8 @@ import java.util.Set;
 @Table(name = "Games")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Games{
+public class Games {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +40,7 @@ public class Games{
 
     @ManyToMany(mappedBy = "gamesSet", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonBackReference
+    @EqualsAndHashCode.Exclude
     private Set<Favorites> favoritesSet = new HashSet<>();
 
     public Games(GamesDto gamesDto){

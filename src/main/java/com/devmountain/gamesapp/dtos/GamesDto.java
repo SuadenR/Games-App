@@ -4,6 +4,7 @@ import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.Games;
 import com.devmountain.gamesapp.entities.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
