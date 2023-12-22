@@ -24,15 +24,15 @@ public class FavoritesServiceImpl implements FavoritesService{
     @Autowired
     private UserRepository userRepository;
 
-//    @Override
-//    @Transactional
-//    public void addFavorites(GamesDto gamesDto, FavoritesDto favoritesDto, Long userId) {
-//        Optional<User> userOptional = userRepository.findById(userId);
-//        Optional<Games> gamesOptional = gamesRepository.findGamesById(gamesDto.getId());
-//        Favorites favorites = new Favorites(favoritesDto);
-//        userOptional.ifPresent(favorites::setUser);
-//        favoritesRepository.saveAndFlush(favorites);
-//        }
+    @Override
+    @Transactional
+    public void addFavorites(GamesDto gamesDto, FavoritesDto favoritesDto, Long userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        Optional<Games> gamesOptional = gamesRepository.findGamesById(gamesDto.getId());
+        Favorites favorites = new Favorites(favoritesDto);
+        userOptional.ifPresent(favorites::setUser);
+        favoritesRepository.saveAndFlush(favorites);
+        }
 
 
     @Override
