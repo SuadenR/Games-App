@@ -1,6 +1,7 @@
 package com.devmountain.gamesapp.controllers;
 
 import com.devmountain.gamesapp.dtos.GamesDto;
+import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.Games;
 import com.devmountain.gamesapp.services.GamesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,8 @@ public class GamesController {
 
     @PutMapping("/update")
     public Optional<Games> updateGames(@RequestBody GamesDto gamesDto){ return gamesService.updateGames(gamesDto);}
+
+    @PutMapping("/favorites")
+    public  String addGamesToFavorites(@PathVariable Long gamesId, @RequestBody String favorites, @PathVariable Long userId) { return gamesService.addGamesToFavorites(gamesId, favorites, userId);}
 
 }

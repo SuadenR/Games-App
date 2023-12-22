@@ -17,4 +17,6 @@ public interface GamesService{
 
     Optional<GamesDto> findGamesById(Long gamesId);
 
+    @Transactional
+    String addGamesToFavorites(Long gamesId, String favorites, Long userId);
 }
