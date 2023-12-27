@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -46,5 +47,11 @@ public class UserServiceImpl implements UserService{
             response.add("Username or password incorrect");
         }
         return response;
+    }
+
+    @Override
+    public List<UserDto> getAllUsers(){
+        List<User> userList = userRepository.findAll();
+        return userList.stream().map(user -> new UserDto(user)).collect(Collectors.toList());
     }
 }

@@ -4,14 +4,11 @@ import com.devmountain.gamesapp.dtos.UserDto;
 import com.devmountain.gamesapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired
@@ -31,4 +28,10 @@ public class UserController {
     public  List<String> userLogin(@RequestBody UserDto userDto) {
         return  userService.userLogin(userDto);
     }
+
+    @GetMapping("/all")
+    public  List<UserDto> getAllUsers(){
+        return userService.getAllUsers();
+    }
+
 }

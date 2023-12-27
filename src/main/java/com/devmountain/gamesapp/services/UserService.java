@@ -12,4 +12,5 @@ public interface UserService {
 
     List<String> userLogin(UserDto userDto);
 
+    List<UserDto> getAllUsers();
 }

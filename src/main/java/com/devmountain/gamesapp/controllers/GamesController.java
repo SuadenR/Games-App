@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/games")
+@RequestMapping("/api/v1/games")
 public class GamesController {
 
     @Autowired
