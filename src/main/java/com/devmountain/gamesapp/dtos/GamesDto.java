@@ -3,9 +3,6 @@ package com.devmountain.gamesapp.dtos;
 import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.Games;
 import com.devmountain.gamesapp.entities.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +32,7 @@ public class GamesDto implements Serializable {
 
     private Games games;
 
-    private Set<Favorites> favoritesSet = new HashSet<>();
+    private Set<FavoritesDto> favoritesDtoSet = new HashSet<>();
 
     public GamesDto(Games games){
         if (games.getId() != null){
@@ -49,6 +46,9 @@ public class GamesDto implements Serializable {
         }
         if (games.getGenre() != null){
             this.genre = games.getGenre();
+        }
+        if (games.getRating() != null){
+            this.rating = games.getRating();
         }
         if (games.getPlatform() != null){
             this.platform = games.getPlatform();

@@ -9,7 +9,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GamesServiceImpl implements GamesService{
@@ -34,7 +36,7 @@ public class GamesServiceImpl implements GamesService{
 
     @Override
     @Transactional
-    public Optional<Games> updateGames(GamesDto gamesDto) {
+    public Optional<Games> updateGames(GamesDto gamesDto){
         Optional<Games> gamesOptional = gamesRepository.findGamesById(gamesDto.getId());
         gamesOptional.ifPresent(games -> {
             games.setGameTitle(gamesDto.getGameTitle());
@@ -48,16 +50,16 @@ public class GamesServiceImpl implements GamesService{
     }
 
     @Override
-    public Optional<GamesDto> findGamesById(Long gamesId) {
+    public Optional<GamesDto> findGamesById(Long gamesId){
         Optional<Games> gamesOptional = gamesRepository.findGamesById(gamesId);
         return gamesOptional.map(GamesDto::new);
     }
 
     @Override
     @Transactional
-    public String addGamesToFavorites(Long gamesId, String favorites, Long userId){
+    public String addGamesToFavorites(Long gamesId, String favoritesName, Long userId){
         Optional<Games> gamesOptional = gamesRepository.findById(gamesId);
-        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByNameAndUserId(gamesId, favorites, userId);
+        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByFavoritesNameAndUserId(favoritesName, userId);
 
         if (gamesOptional.isPresent() && favoritesOptional.isPresent()){
             favoritesOptional.get().getGamesSet().add(gamesOptional.get());
@@ -67,6 +69,12 @@ public class GamesServiceImpl implements GamesService{
             return "Added to your favorites!";
         }
         return "Unable to add to your favorites.";
+    }
+
+    @Override
+    public List<GamesDto> getAllGames() {
+        List<Games> gamesList = gamesRepository.findAll();
+        return gamesList.stream().map(games -> new GamesDto(games)).collect(Collectors.toList());
     }
 
 

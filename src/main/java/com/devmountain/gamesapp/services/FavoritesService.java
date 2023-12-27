@@ -2,17 +2,20 @@ package com.devmountain.gamesapp.services;
 
 import com.devmountain.gamesapp.dtos.FavoritesDto;
 
-import com.devmountain.gamesapp.dtos.GamesDto;
 import jakarta.transaction.Transactional;
 
-import java.util.Optional;
+import java.util.List;
 
 
 public interface FavoritesService {
 
     @Transactional
-    void addFavorites(GamesDto gamesDto, FavoritesDto favoritesDto, Long userId);
+    void addFavoritesToUser(FavoritesDto favoritesDto, Long userId);
 
     @Transactional
-    void deleteFavoritesById(Long favoritesId);
+    void deleteFavorites(Long favoritesId);
+
+    List<FavoritesDto> getFavoritesByUserId(Long userId);
+
+    List<FavoritesDto> getAllFavorites();
 }

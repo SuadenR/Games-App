@@ -2,7 +2,6 @@ package com.devmountain.gamesapp.entities;
 
 import com.devmountain.gamesapp.dtos.FavoritesDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +21,9 @@ public class Favorites{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    private String name;
+
     @ManyToOne
     @JsonBackReference
     private User user;
@@ -36,11 +38,11 @@ public class Favorites{
     private Set<Games> gamesSet = new HashSet<>();
 
     public Favorites(FavoritesDto favoritesDto){
-        if(favoritesDto.getUser() != null){
-            this.user = favoritesDto.getUser();
+
+        if (favoritesDto.getName() != null){
+            this.name  = favoritesDto.getName();
         }
-        if (favoritesDto.getGamesSet() != null){
-            this.gamesSet = favoritesDto.getGamesSet();
+
         }
     }
-}
+

@@ -1,16 +1,16 @@
 package com.devmountain.gamesapp.controllers;
 
 import com.devmountain.gamesapp.dtos.GamesDto;
-import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.Games;
 import com.devmountain.gamesapp.services.GamesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/v1/games")
+@RequestMapping("/games")
 public class GamesController {
 
     @Autowired
@@ -25,10 +25,13 @@ public class GamesController {
     @GetMapping("/{gamesId}")
     public Optional<GamesDto> findGamesById(@PathVariable Long gamesId){ return gamesService.findGamesById(gamesId);}
 
+    @GetMapping("/")
+    public List<GamesDto> getAllGames() { return gamesService.getAllGames();}
+
     @PutMapping("/update")
     public Optional<Games> updateGames(@RequestBody GamesDto gamesDto){ return gamesService.updateGames(gamesDto);}
 
-    @PutMapping("/favorites")
-    public  String addGamesToFavorites(@PathVariable Long gamesId, @RequestBody String favorites, @PathVariable Long userId) { return gamesService.addGamesToFavorites(gamesId, favorites, userId);}
+    @PostMapping("/favorites/add/{gamesId}/{favoritesId}/{userId}")
+    public  String addGamesToFavorites(@PathVariable Long gamesId, @RequestBody String favoritesName, @PathVariable Long userId) { return gamesService.addGamesToFavorites(gamesId, favoritesName, userId);}
 
 }

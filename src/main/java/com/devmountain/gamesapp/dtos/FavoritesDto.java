@@ -17,19 +17,19 @@ public class FavoritesDto implements Serializable {
 
     private Long id;
 
-    private User user;
+    private String name;
 
-    private Set<Games> gamesSet = new HashSet<>();
+    private UserDto userDto;
+
+    private Set<GamesDto> gamesDtoSet = new HashSet<>();
 
     public FavoritesDto(Favorites favorites){
         if (favorites.getId() != null){
             this.id = favorites.getId();
         }
-        if (favorites.getUser() != null){
-            this.user = favorites.getUser();
-        }
-        if (favorites.getGamesSet() != null){
-            this.gamesSet = favorites.getGamesSet();
+        if (favorites.getName() != null){
+            this.name = favorites.getName();
         }
     }
+
 }

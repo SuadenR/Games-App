@@ -1,6 +1,5 @@
 package com.devmountain.gamesapp.dtos;
 
-import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;

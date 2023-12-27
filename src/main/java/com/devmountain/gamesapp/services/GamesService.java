@@ -4,6 +4,7 @@ import com.devmountain.gamesapp.dtos.GamesDto;
 import com.devmountain.gamesapp.entities.Games;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface GamesService{
@@ -18,5 +19,7 @@ public interface GamesService{
     Optional<GamesDto> findGamesById(Long gamesId);
 
     @Transactional
-    String addGamesToFavorites(Long gamesId, String favorites, Long userId);
+    String addGamesToFavorites(Long gamesId, String favoritesName, Long userId);
+
+    List<GamesDto> getAllGames();
 }
