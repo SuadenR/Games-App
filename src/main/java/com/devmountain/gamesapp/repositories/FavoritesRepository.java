@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface FavoritesRepository extends JpaRepository<Favorites, Long> {
 
-    Optional<Favorites> findFavoritesByFavoritesNameAndUserId (String favoritesName, Long userId);
+    Optional<Favorites> findFavoritesByNameAndUserId (String favoritesName, Long userId);
 
 
     List<Favorites> findAllByUser(User user);

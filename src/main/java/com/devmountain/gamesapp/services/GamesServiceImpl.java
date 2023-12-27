@@ -59,7 +59,7 @@ public class GamesServiceImpl implements GamesService{
     @Transactional
     public String addGamesToFavorites(Long gamesId, String favoritesName, Long userId){
         Optional<Games> gamesOptional = gamesRepository.findById(gamesId);
-        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByFavoritesNameAndUserId(favoritesName, userId);
+        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByNameAndUserId(favoritesName, userId);
 
         if (gamesOptional.isPresent() && favoritesOptional.isPresent()){
             favoritesOptional.get().getGamesSet().add(gamesOptional.get());

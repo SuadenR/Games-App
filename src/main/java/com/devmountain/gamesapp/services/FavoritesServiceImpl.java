@@ -4,7 +4,6 @@ import com.devmountain.gamesapp.dtos.FavoritesDto;
 import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.User;
 import com.devmountain.gamesapp.repositories.FavoritesRepository;
-import com.devmountain.gamesapp.repositories.GamesRepository;
 import com.devmountain.gamesapp.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
