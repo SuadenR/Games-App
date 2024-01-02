@@ -7,21 +7,10 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-async function getFavorites(userId) {
-    await fetch(`${baseUrl}/users/${userId}`, {
-        method: "GET",
-        headers: headers
-    })
-        .then(response => response.json())
-        .then(data => createFavoritesCards(data))
-        .catch(err => console.error(err))
+function handleLogout(){
+    let c = document.cookie.split(";");
+    for(let i in c){
+        document.cookie = /^[^=]+/.exec(c[i])[0]+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
+    }
 }
 
-const createFavoritesCards = (array) => {
-    favoritesContainer.innerHTML = ''
-    array.forEach(obj => {
-        let favoritesCard = document.createElement("div")
-        favoritesCard.classList.add("m-2")
-        favoritesCard.innerHTML = ``
-    })
-}
