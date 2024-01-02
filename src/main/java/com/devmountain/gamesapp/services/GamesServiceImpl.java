@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,9 +58,9 @@ public class GamesServiceImpl implements GamesService{
 
     @Override
     @Transactional
-    public String addGamesToFavorites(Long gamesId, String favoritesName, Long userId){
+    public String addGamesToFavorites(Long gamesId, Long favoritesId, Long userId){
         Optional<Games> gamesOptional = gamesRepository.findById(gamesId);
-        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByNameAndUserId(favoritesName, userId);
+        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByIdAndUserId(favoritesId, userId);
 
         if (gamesOptional.isPresent() && favoritesOptional.isPresent()){
             favoritesOptional.get().getGamesSet().add(gamesOptional.get());

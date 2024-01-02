@@ -32,6 +32,6 @@ public class GamesController {
     public Optional<Games> updateGames(@RequestBody GamesDto gamesDto){ return gamesService.updateGames(gamesDto);}
 
     @PostMapping("/favorites/add/{gamesId}/{favoritesId}/{userId}")
-    public  String addGamesToFavorites(@PathVariable Long gamesId, @RequestBody String favoritesName, @PathVariable Long userId) { return gamesService.addGamesToFavorites(gamesId, favoritesName, userId);}
+    public  String addGamesToFavorites(@PathVariable Long gamesId, @PathVariable Long favoritesId, @PathVariable Long userId) { return gamesService.addGamesToFavorites(gamesId, favoritesId, userId);}
 
 }

@@ -27,9 +27,6 @@ public class FavoritesDto implements Serializable {
         if (favorites.getId() != null){
             this.id = favorites.getId();
         }
-        if (favorites.getName() != null){
-            this.name = favorites.getName();
-        }
     }
 
 }

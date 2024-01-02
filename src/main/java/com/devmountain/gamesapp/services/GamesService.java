@@ -19,7 +19,7 @@ public interface GamesService{
     Optional<GamesDto> findGamesById(Long gamesId);
 
     @Transactional
-    String addGamesToFavorites(Long gamesId, String favoritesName, Long userId);
+    String addGamesToFavorites(Long gamesId, Long favoritesId, Long userId);
 
     List<GamesDto> getAllGames();
 }

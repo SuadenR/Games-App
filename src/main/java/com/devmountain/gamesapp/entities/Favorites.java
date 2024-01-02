@@ -21,9 +21,6 @@ public class Favorites{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String name;
-
     @ManyToOne
     @JsonBackReference
     private User user;
@@ -38,10 +35,6 @@ public class Favorites{
     private Set<Games> gamesSet = new HashSet<>();
 
     public Favorites(FavoritesDto favoritesDto){
-
-        if (favoritesDto.getName() != null){
-            this.name  = favoritesDto.getName();
-        }
 
         }
     }
