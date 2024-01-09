@@ -35,3 +35,35 @@ li a:hover:not(.active) {
 .active {
     background-color: #010c4e;
 }
+
+#games-form-container {
+    width: 10%;
+    height: 100%;
+    padding: 20px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #333;
+    float: right;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+}
+
+
+#submit-btn {
+    padding: 5px;
+    background: #010c4e;
+    border: #010c4e;
+    color: white;
+    border-radius: 5px;
+}
+#games-form-header {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: white;
+}
