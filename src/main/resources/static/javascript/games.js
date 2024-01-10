@@ -36,12 +36,12 @@ async function addGames(obj) {
     })
         .catch(err => console.error(err.message))
     if (response.status === 200) {
-        return getGames(gamesId)
+        return getGames()
     }
 }
 
-async function getGames(gamesId) {
-    await fetch(`${baseUrl}/${gamesId}`, {
+async function getGames() {
+    await fetch(`${baseUrl}/`, {
         method:"GET",
         headers:headers
     })
@@ -75,3 +75,11 @@ const createGamesCard = (array) => {
 
 submitForm.addEventListener("submit", handleSubmit)
 
+
+fetch(`${baseUrl}/`, {
+    method:"GET",
+    headers:headers
+})
+    .then(response => response.json())
+    .then(data => createGamesCard(data))
+    .catch(err => console.error(err))
