@@ -3,21 +3,14 @@ const userId = cookieArr[1];
 
 const favoritesContainer = document.getElementById("favorites_container")
 
-const baseUrl = `http://localhost:8080/api/v1/favorites/games/`
+const baseUrl = `http://localhost:8080/api/v1/favorites/`
 
 const headers = {
     'Content-Type': 'application/json'
 }
 
-function handleLogout(){
-    let c = document.cookie.split(";");
-    for(let i in c){
-        document.cookie = /^[^=]+/.exec(c[i])[0]+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
-    }
-}
-
-async function addFavorites(obj) {
-    const response = await fetch(`${baseUrl}/${userId}`,{
+async function addFavoritesToUser(obj) {
+    const response = await fetch(`${baseUrl}/add/${userId}`,{
         method: "POST",
         body: JSON.stringify(obj),
         headers: headers
@@ -29,7 +22,7 @@ async function addFavorites(obj) {
 }
 
 async function getFavorites(userId) {
-    await fetch(`${baseUrl}/${userId}`, {
+    await fetch(`${baseUrl}games/${userId}`, {
         method:"GET",
         headers:headers
     })
@@ -39,20 +32,19 @@ async function getFavorites(userId) {
 }
 
 const createFavoritesCard = (array) => {
+    console.log(array)
     favoritesContainer.innerHTML = ''
     array.forEach(obj => {
         let favoritesCard = document.createElement("div")
         favoritesCard.classList.add("m-2")
         favoritesCard.innerHTML = `
-        <div class="card d-flex" style="width: 18rem; height: 18rem;">
+        <div id="favorites-card" class="card d-flex" style="width: 18rem; height: 18rem;" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
             <div class="card-body d-flex flex-column justify-content-between" style="height: fit-content">
                 <p class="card-text">${obj.gameTitle}</p>
                 <p class="card-text">${obj.publisher}</p>
                 <p class="card-text">${obj.genre}</p>
                 <p class="card-text">${obj.platform}</p>
                 <p class="card-text">${obj.rating}</p>
-                <div class="d-flex justify-content-between">
-                    <button class="delete-btn">Delete</button>                
             </div>
         </div>
     `
@@ -60,6 +52,29 @@ const createFavoritesCard = (array) => {
     })
 }
 
-getFavorites(userId);
+async function deleteFavorites(favoritesId){
+    await fetch(baseUrl + favoritesId, {
+        method:"DELETE",
+        headers:headers
+    })
 
-submitForm.addEventListener("submit", handleSubmit)
+        .catch(err => console.error(err))
+
+    return getFavorites(userId)
+}
+
+// async function recreateFavorites(userId) {
+//     const response = await fetch(`${baseUrl}add/${userId}`, {
+//         method:"POST",
+//         body:JSON.stringify()
+//     })
+// }
+
+
+fetch(`${baseUrl}games/${userId}`, {
+    method:"GET",
+    headers:headers
+})
+    .then(response => response.json())
+    .then(data => createFavoritesCard(data))
+    .catch(err => console.error(err))

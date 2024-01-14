@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -35,3 +37,23 @@ li a:hover:not(.active) {
 .active {
     background-color: #010c4e;
 }
+
+#favorites-card {
+    background: #010c4e;
+    background: -webkit-linear-gradient(to right, #333546, #010c4e);
+    background: linear-gradient(to right, #333546, #010c4e);
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    float: left;
+    margin: 4px;
+}
+
+#favorites_container {
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    width: 100vw;
+}
+
+

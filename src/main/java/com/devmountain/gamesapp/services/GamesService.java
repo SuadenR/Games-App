@@ -21,5 +21,8 @@ public interface GamesService{
     @Transactional
     String addGamesToFavorites(Long gamesId, Long favoritesId, Long userId);
 
+    @Transactional
+    String addGamesToFavorites(Long gamesId, Long userId);
+
     List<GamesDto> getAllGames();
 }

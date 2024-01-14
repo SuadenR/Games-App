@@ -14,29 +14,56 @@
 </ul>
 <body>
 
-<div class="container-fluid" id="games-container">Im here!!!!!!</div>
-
 <div class="container" id="games-form-container">
     <form id="games-form">
         <div class="form-group">
-            <header id="games-form-header">Add a game to our collection!</header>
+            <header id="games-form-header">Add a game to the collection!</header>
 
-            <input type="text" id="gameTitle-input" placeholder="Enter the Game Title">
+            <label for="gameTitle-input"></label><input type="text" id="gameTitle-input" placeholder="Enter the Game Title">
 
-            <input type="text" id="publisher-input" placeholder="Enter the Publisher">
+            <label for="publisher-input"></label><input type="text" id="publisher-input" placeholder="Enter the Publisher">
 
-            <input type="text" id="genre-input" placeholder="Enter the Genre">
+            <label for="genre-input"></label><input type="text" id="genre-input" placeholder="Enter the Genre">
 
-            <input type="text" id="platform-input" placeholder="Enter the Platform">
+            <label for="platform-input"></label><input type="text" id="platform-input" placeholder="Enter the Platform">
 
-            <input type="text" id="rating-input" placeholder="Enter the ESRB Rating">
+            <label for="rating-input"></label><input type="text" id="rating-input" placeholder="Enter the ESRB Rating">
 
             <button type="submit" id="submit-btn">Submit</button>
         </div>
     </form>
-
 </div>
 
+<div class="container-fluid" id="games-container">Im here!!!!!!</div>
+
+<!--Modal-->
+<div class="modal fade" id="games-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="games-edit-modal-title" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="games-edit-modal-title">Edit a game</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex">
+                <form id="games-edit-form">
+                <input type="text" id="gameTitle-input-edit" placeholder="Enter the Game Title">
+
+                <input type="text" id="publisher-input-edit" placeholder="Enter the Publisher">
+
+                <input type="text" id="genre-input-edit" placeholder="Enter the Genre">
+
+                <input type="text" id="platform-input-edit" placeholder="Enter the Platform">
+
+                <input type="text" id="rating-input-edit" placeholder="Enter the ESRB Rating">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="update-games-button" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="./javascript/games.js" type="application/javascript"></script>
 </body>

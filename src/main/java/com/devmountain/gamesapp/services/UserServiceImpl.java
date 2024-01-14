@@ -1,7 +1,9 @@
 package com.devmountain.gamesapp.services;
 
 import com.devmountain.gamesapp.dtos.UserDto;
+import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.User;
+import com.devmountain.gamesapp.repositories.FavoritesRepository;
 import com.devmountain.gamesapp.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private FavoritesRepository favoritesRepository;
+
     @Override
     @Transactional
     public List<String> addUser(UserDto userDto){
@@ -29,6 +34,12 @@ public class UserServiceImpl implements UserService{
         User user = new User(userDto);
         userRepository.saveAndFlush(user);
         response.add("http://localhost:8080/login.html");
+
+        Optional<User> userOptional = userRepository.findById(user.getId());
+        Favorites favorites = new Favorites();
+        userOptional.ifPresent(favorites::setUser);
+        favoritesRepository.saveAndFlush(favorites);
+
         return response;
     }
 

@@ -72,6 +72,22 @@ public class GamesServiceImpl implements GamesService{
     }
 
     @Override
+    @Transactional
+    public String addGamesToFavorites(Long gamesId, Long userId){
+        Optional<Games> gamesOptional = gamesRepository.findById(gamesId);
+        Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByUserId(userId);
+
+        if (gamesOptional.isPresent() && favoritesOptional.isPresent()){
+            favoritesOptional.get().getGamesSet().add(gamesOptional.get());
+            gamesOptional.get().getFavoritesSet().add(favoritesOptional.get());
+            gamesRepository.saveAndFlush(gamesOptional.get());
+            favoritesRepository.saveAndFlush(favoritesOptional.get());
+            return "Added to your favorites!";
+        }
+        return "Unable to add to your favorites.";
+    }
+
+    @Override
     public List<GamesDto> getAllGames() {
         List<Games> gamesList = gamesRepository.findAll();
         return gamesList.stream().map(games -> new GamesDto(games)).collect(Collectors.toList());
