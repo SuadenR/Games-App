@@ -36,7 +36,7 @@ public class GamesServiceImpl implements GamesService{
 
     @Override
     @Transactional
-    public Optional<Games> updateGames(GamesDto gamesDto){
+    public void updateGames(GamesDto gamesDto){
         Optional<Games> gamesOptional = gamesRepository.findGamesById(gamesDto.getId());
         gamesOptional.ifPresent(games -> {
             games.setGameTitle(gamesDto.getGameTitle());
@@ -46,7 +46,6 @@ public class GamesServiceImpl implements GamesService{
             games.setRating(gamesDto.getRating());
             gamesRepository.saveAndFlush(games);
         });
-        return gamesOptional;
     }
 
     @Override

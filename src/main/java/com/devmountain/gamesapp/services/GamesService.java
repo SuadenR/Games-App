@@ -13,8 +13,6 @@ public interface GamesService{
     void addGames(GamesDto gamesDto);
     @Transactional
     void  deleteGamesById(Long gamesId);
-    @Transactional
-    Optional<Games> updateGames(GamesDto gamesDto);
 
     Optional<GamesDto> findGamesById(Long gamesId);
 
@@ -25,4 +23,7 @@ public interface GamesService{
     String addGamesToFavorites(Long gamesId, Long userId);
 
     List<GamesDto> getAllGames();
+
+    @Transactional
+    void updateGames(GamesDto gamesDto);
 }

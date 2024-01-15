@@ -28,8 +28,8 @@ public class GamesController {
     @GetMapping("/")
     public List<GamesDto> getAllGames() { return gamesService.getAllGames();}
 
-    @PutMapping("/update")
-    public Optional<Games> updateGames(@RequestBody GamesDto gamesDto){ return gamesService.updateGames(gamesDto);}
+    @PutMapping
+    public void updateGames(@RequestBody GamesDto gamesDto){ gamesService.updateGames(gamesDto);}
 
     @PostMapping("/favorites/add/{userId}/{gamesId}/{favoritesId}")
     public  String addGamesToFavorites(@PathVariable Long gamesId, @PathVariable Long favoritesId, @PathVariable Long userId) { return gamesService.addGamesToFavorites(gamesId, favoritesId, userId);}

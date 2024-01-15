@@ -3,7 +3,7 @@ const userId = cookieArr[1];
 
 const favoritesContainer = document.getElementById("favorites_container")
 
-const baseUrl = `http://localhost:8080/api/v1/favorites/`
+const baseUrl = `http://localhost:8080/api/v1/favorites`
 
 const headers = {
     'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ async function addFavoritesToUser(obj) {
 }
 
 async function getFavorites(userId) {
-    await fetch(`${baseUrl}games/${userId}`, {
+    await fetch(`${baseUrl}/games/${userId}`, {
         method:"GET",
         headers:headers
     })
@@ -53,7 +53,7 @@ const createFavoritesCard = (array) => {
 }
 
 async function deleteFavorites(favoritesId){
-    await fetch(baseUrl + favoritesId, {
+    await fetch(`${baseUrl}/${favoritesId}`, {
         method:"DELETE",
         headers:headers
     })
@@ -63,15 +63,8 @@ async function deleteFavorites(favoritesId){
     return getFavorites(userId)
 }
 
-// async function recreateFavorites(userId) {
-//     const response = await fetch(`${baseUrl}add/${userId}`, {
-//         method:"POST",
-//         body:JSON.stringify()
-//     })
-// }
 
-
-fetch(`${baseUrl}games/${userId}`, {
+fetch(`${baseUrl}/games/${userId}`, {
     method:"GET",
     headers:headers
 })

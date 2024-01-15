@@ -26,7 +26,6 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
     border-radius: 20px;
-
 }
 
 li a:hover:not(.active) {
@@ -95,8 +94,8 @@ p {
     width: 140px;
 }
 .form-popup {
+    display: none;
     float: right;
-    border: 3px solid #f1f1f1;
     box-sizing: content-box;
     z-index: 9;
     width: 20%;
