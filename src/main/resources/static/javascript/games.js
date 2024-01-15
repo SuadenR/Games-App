@@ -147,12 +147,12 @@ const createGamesCard = (array) => {
                 <p class="card-text">${obj.platform}</p>
                 <p class="card-text">${obj.rating}</p>         
                  <div class="d-flex justify-content-between">
-                 <button class="favorites-button" type="button" onclick="addGamesToFavorites(userId, ${obj.id})">⭐</button>
+                 <button class="favorites-button" onclick="addGamesToFavorites(userId, ${obj.id})">⭐</button>
                  <button onclick="getGamesById(${obj.id})" type="button" class="btn btn-primary"
                  data-bs-toggle="modal" data-bs-target="#games-edit-modal">
                  Edit
                  </button>  
-                 <button class="delete-games-button" type="button" onclick="handleDelete(${obj.id})">Delete</button>
+                 <button class="delete-games-button" onclick="handleDelete(${obj.id})">Delete</button>
             </div>
         </div>
     `
