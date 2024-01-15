@@ -50,8 +50,17 @@ async function handleDelete() {
 async function handleGamesEdit(gamesId) {
     let bodyObj = {
         id:gamesId,
-        body: games
+        body: gamesEditForm.value
     }
+
+    await  fetch(baseUrl, {
+        method:"PUT",
+        body: JSON.stringify(bodyObj),
+        headers:headers
+    })
+        .catch(err => console.error(err))
+
+    return getGames();
 }
 
 async function addGames(obj) {
@@ -101,7 +110,11 @@ const createGamesCard = (array) => {
                 <p class="card-text">${obj.platform}</p>
                 <p class="card-text">${obj.rating}</p>         
                  <div class="d-flex justify-content-between">
-                 <button class="favorites-button" type="button" onclick="addGamesToFavorites(userId, ${obj.id})">⭐</button>  
+                 <button class="favorites-button" type="button" onclick="addGamesToFavorites(userId, ${obj.id})">⭐</button>
+                 <button onclick="getGamesById(${obj.id})" type="button" class="btn btn-primary"
+                 data-bs-toggle="modal" data-bs-target="#games-edit-modal">
+                 Edit
+                 </button>  
             </div>
         </div>
     `
@@ -122,8 +135,21 @@ async function addGamesToFavorites(userId, gamesId) {
 }
 
 const populateModal = (obj) => {
-    gamesEditForm.innerText = ''
-    gamesEditForm.innerText = obj.body
+
+    // gamesEditForm.innerText = ''
+    // gamesEditForm.innerText = obj.body
+
+    gameTitleEdit.innerText = ''
+    publisherEdit.innerText = ''
+    platformEdit.innerText = ''
+    genreEdit.innerText = ''
+    ratingEdit.innerText = ''
+    gameTitleEdit.innerText = obj.body.gameTitle
+    publisherEdit.innerText = obj.body.publisher
+    platformEdit.innerText = obj.body.platform
+    genreEdit.innerText = obj.body.genre
+    ratingEdit.innerText = obj.body.rating
+
     updateGamesBtn.setAttribute(`data-games-id`, obj.id)
 }
 
