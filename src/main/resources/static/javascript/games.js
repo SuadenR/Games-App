@@ -153,6 +153,14 @@ const populateModal = (obj) => {
     updateGamesBtn.setAttribute(`data-games-id`, obj.id)
 }
 
+function openForm() {
+    document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+    document.getElementById("myForm").style.display = "none";
+}
+
 getGames();
 
 submitForm.addEventListener("submit", handleSubmit)

@@ -2,8 +2,7 @@
 
 ul {
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 2px;
     overflow: hidden;
     background-color: #333;
     border-radius: 20px;
@@ -38,50 +37,30 @@ li a:hover:not(.active) {
     background-color: #010c4e;
 }
 
-#games-form-container {
-    width: 10%;
-    height: 100%;
-    padding: 20px 10px;
-    margin: 8px 0;
-    border: 1px solid #333;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background: #333;
-    float: right;
-}
-
-input {
+.input {
+    margin-bottom: 5px;
     padding: 5px;
-    margin: 5px;
-}
-
-
-#submit-btn {
-    padding: 5px;
-    background: #010c4e;
-    border: #010c4e;
-    color: white;
-    border-radius: 5px;
-}
-#games-form-header {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: white;
 }
 
 #games-form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 5px;
     font-family: 'Montserrat', sans-serif;
     background-color: #333;
     color: white;
 }
 
+#parent {
+    display: flex;
+}
 #games-container {
     justify-content: center;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
+    float: left;
+    width: 80%;
 }
 
 #games-card {
@@ -92,7 +71,8 @@ input {
     border-radius: 4px;
     text-align: center;
     float: left;
-    margin: 4px;
+    margin-right: 3px;
+    margin-top: 3px;
 
 }
 
@@ -102,5 +82,51 @@ p {
     line-height: 15px;
     letter-spacing: 0.5px;
 }
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 140px;
+}
+.form-popup {
+    float: right;
+    border: 3px solid #f1f1f1;
+    box-sizing: content-box;
+    z-index: 9;
+    width: 20%;
+}
+.form-container {
+    align-content: center;
+    background-color: white;
+}
+
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    margin: 5px;
+    opacity: 0.8;
+
+}
+
+.form-container .cancel {
+    background-color: red;
+}
+
+
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
+
+
 
 

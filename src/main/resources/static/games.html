@@ -16,28 +16,33 @@
 </ul>
 <body>
 
-<div class="container" id="games-form-container">
-    <form id="games-form">
-        <div class="form-group">
-            <header id="games-form-header">Add a game to the collection!</header>
+<button class="open-button" onclick="openForm()">Add a Game!</button>
 
-            <label for="gameTitle-input"></label><input type="text" id="gameTitle-input" placeholder="Enter the Game Title">
-
-            <label for="publisher-input"></label><input type="text" id="publisher-input" placeholder="Enter the Publisher">
-
-            <label for="genre-input"></label><input type="text" id="genre-input" placeholder="Enter the Genre">
-
-            <label for="platform-input"></label><input type="text" id="platform-input" placeholder="Enter the Platform">
-
-            <label for="rating-input"></label><input type="text" id="rating-input" placeholder="Enter the ESRB Rating">
-
-            <button type="submit" id="submit-btn">Submit</button>
-        </div>
-    </form>
-</div>
-
+<div id="parent">
 <div class="container-fluid" id="games-container">Im here!!!!!!</div>
+<div class="form-popup" id="myForm" style="container: inherit">
+    <div class="container" id="games-form-container">
+        <form id="games-form" action="/action_page.php" class="form-container">
+            <div class="form-group">
+                <header id="games-form-header">Add a game to the collection!</header>
 
+                <input class="input" type="text" id="gameTitle-input" placeholder="Enter the Game Title">
+
+                <input class="input" type="text" id="publisher-input" placeholder="Enter the Publisher">
+
+                <input class="input" type="text" id="genre-input" placeholder="Enter the Genre">
+
+                <input class="input" type="text" id="platform-input" placeholder="Enter the Platform">
+
+                <input class="input" type="text" id="rating-input" placeholder="Enter the ESRB Rating">
+
+                <button type="submit" id="submit-btn">Submit</button>
+                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
 <!--Modal-->
 <div class="modal fade" id="games-edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="games-edit-modal-title" aria-hidden="true">
     <div class="modal-dialog">
