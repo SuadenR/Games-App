@@ -53,16 +53,26 @@ const createFavoritesCard = (array) => {
 }
 
 async function deleteFavorites(favoritesId){
-    await fetch(`${baseUrl}/${favoritesId}`, {
-        method:"DELETE",
-        headers:headers
-    })
+    const response = await fetch(`${baseUrl}/${favoritesId}`, {
+        method: "DELETE",
+        headers: headers
+    }).catch(err => console.error(err));
 
-        .catch(err => console.error(err))
-
-    return getFavorites(userId)
+    if (response.ok) {
+        return getFavorites(userId);
+    } else {
+        throw new Error('Failed to delete favorite');
+    }
 }
 
+async function handleDeleteAndAddFavorites(favoritesId, obj) {
+    try {
+        await deleteFavorites(favoritesId);
+        await addFavoritesToUser(obj);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 fetch(`${baseUrl}/games/${userId}`, {
     method:"GET",
