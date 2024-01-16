@@ -29,7 +29,6 @@ public class FavoritesServiceImpl implements FavoritesService{
     @Autowired
     private GamesRepository gamesRepository;
 
-
     @Override
     @Transactional
     public void addFavoritesToUser(FavoritesDto favoritesDto, Long userId) {
@@ -38,7 +37,6 @@ public class FavoritesServiceImpl implements FavoritesService{
         userOptional.ifPresent(favorites::setUser);
         favoritesRepository.saveAndFlush(favorites);
         }
-
 
     @Override
     @Transactional
@@ -57,6 +55,15 @@ public class FavoritesServiceImpl implements FavoritesService{
             return favoritesList.stream().map(favorites -> new FavoritesDto(favorites)).collect(Collectors.toList());
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    public Optional<FavoritesDto> getFavoritesById(Long favoritesId) {
+        Optional<Favorites> favoritesOptional = favoritesRepository.findById(favoritesId);
+        if (favoritesOptional.isPresent()){
+            return Optional.of(new FavoritesDto(favoritesOptional.get()));
+        }
+        return Optional.empty();
     }
 
     @Override

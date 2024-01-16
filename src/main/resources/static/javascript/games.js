@@ -119,10 +119,8 @@ async function getGames() {
 async function getGamesById(gamesId) {
 
     await fetch(`${baseUrl}/${gamesId}`, {
-
         method:"GET",
         headers:headers
-
     })
 
         .then(res => res.json())

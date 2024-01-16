@@ -9,18 +9,6 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-async function addFavoritesToUser(obj) {
-    const response = await fetch(`${baseUrl}/add/${userId}`,{
-        method: "POST",
-        body: JSON.stringify(obj),
-        headers: headers
-    })
-        .catch(err => console.error(err.message))
-    if (response.status === 200) {
-        return getFavorites(userId)
-    }
-}
-
 async function getFavorites(userId) {
     await fetch(`${baseUrl}/games/${userId}`, {
         method:"GET",
@@ -52,27 +40,46 @@ const createFavoritesCard = (array) => {
     })
 }
 
-async function deleteFavorites(favoritesId){
-    const response = await fetch(`${baseUrl}/${favoritesId}`, {
-        method: "DELETE",
+async function addFavoritesToUser() {
+    const response = await fetch(`${baseUrl}/add/${userId}`,{
+        method: "POST",
         headers: headers
-    }).catch(err => console.error(err));
-
-    if (response.ok) {
-        return getFavorites(userId);
-    } else {
-        throw new Error('Failed to delete favorite');
+    })
+        .catch(err => console.error(err.message))
+    if (response.status === 200) {
+        return getFavorites(userId)
     }
 }
 
-async function handleDeleteAndAddFavorites(favoritesId, obj) {
+async function deleteFavorites(favoritesId) {
+    const response = await fetch(`${baseUrl}/${favoritesId}`, {
+        method: "DELETE",
+        body: getFavoritesById(favoritesId),
+        headers: headers
+    })
+        .catch(err => console.error(err));
+    if (response.status === 200) {
+        return getFavorites(userId);
+    }
+}
+
+async function getFavoritesById(favoritesId) {
+    await fetch(`${baseUrl}/${favoritesId}`, {
+        method:"GET",
+        headers:headers
+    })
+        .then(res => res.json())
+}
+async function handleDeleteAndAddFavorites() {
     try {
-        await deleteFavorites(favoritesId);
-        await addFavoritesToUser(obj);
-    } catch (error) {
+        await deleteFavorites();
+        await addFavoritesToUser();
+    }
+    catch (error) {
         console.error(error);
     }
 }
+
 
 fetch(`${baseUrl}/games/${userId}`, {
     method:"GET",
