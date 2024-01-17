@@ -47,29 +47,15 @@ public class FavoritesServiceImpl implements FavoritesService{
     }
 
     @Override
-    public List<FavoritesDto> getFavoritesByUserId(Long userId) {
-
-        Optional<User> userOptional = userRepository.findById(userId);
-        if (userOptional.isPresent()){
-            List<Favorites> favoritesList = favoritesRepository.findAllByUser(userOptional.get());
-            return favoritesList.stream().map(favorites -> new FavoritesDto(favorites)).collect(Collectors.toList());
-        }
-        return Collections.emptyList();
-    }
-
-    @Override
     public Optional<FavoritesDto> getFavoritesById(Long favoritesId) {
         Optional<Favorites> favoritesOptional = favoritesRepository.findById(favoritesId);
-        if (favoritesOptional.isPresent()){
-            return Optional.of(new FavoritesDto(favoritesOptional.get()));
-        }
-        return Optional.empty();
+        return favoritesOptional.map(FavoritesDto::new);
     }
 
     @Override
     public List<FavoritesDto> getAllFavorites() {
         List<Favorites> favoritesList = favoritesRepository.findAll();
-        return  favoritesList.stream().map(favorites -> new FavoritesDto(favorites)).collect(Collectors.toList());
+        return  favoritesList.stream().map(FavoritesDto::new).collect(Collectors.toList());
     }
 
     @Override
@@ -78,7 +64,7 @@ public class FavoritesServiceImpl implements FavoritesService{
         Optional<Favorites> favoritesOptional = favoritesRepository.findFavoritesByUserId(userId);
         if (favoritesOptional.isPresent()){
             List<Games> gamesList = gamesRepository.findAllByFavoritesSetId(favoritesOptional.get().getId());
-            return gamesList.stream().map(games -> new GamesDto(games)).collect(Collectors.toList());
+            return gamesList.stream().map(GamesDto::new).collect(Collectors.toList());
         }
         return Collections.emptyList();
     }

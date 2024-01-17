@@ -17,11 +17,10 @@ public interface FavoritesService {
     @Transactional
     void deleteFavorites(Long favoritesId);
 
-    List<FavoritesDto> getFavoritesByUserId(Long userId);
-
     List<FavoritesDto> getAllFavorites();
 
     List<GamesDto> getAllGamesFromFavoriteByUserId(Long userId);
 
     Optional<FavoritesDto> getFavoritesById(Long favoritesId);
+
 }

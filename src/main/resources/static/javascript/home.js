@@ -52,9 +52,10 @@ async function addFavoritesToUser() {
 }
 
 async function deleteFavorites(favoritesId) {
+
     const response = await fetch(`${baseUrl}/${favoritesId}`, {
         method: "DELETE",
-        body: getFavoritesById(favoritesId),
+        body: getFavoritesById(),
         headers: headers
     })
         .catch(err => console.error(err));

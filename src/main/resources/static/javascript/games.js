@@ -177,7 +177,6 @@ async function addGamesToFavorites(userId, gamesId) {
 
 const populateModal = (obj) => {
 
-
     gameTitleEdit.innerText = ''
     publisherEdit.innerText = ''
     platformEdit.innerText = ''
