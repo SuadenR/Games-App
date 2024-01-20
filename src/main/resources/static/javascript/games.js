@@ -177,16 +177,11 @@ async function addGamesToFavorites(userId, gamesId) {
 
 const populateModal = (obj) => {
 
-    gameTitleEdit.innerText = ''
-    publisherEdit.innerText = ''
-    platformEdit.innerText = ''
-    genreEdit.innerText = ''
-    ratingEdit.innerText = ''
-    gameTitleEdit.innerText = obj.gameTitle
-    publisherEdit.innerText = obj.publisher
-    platformEdit.innerText = obj.platform
-    genreEdit.innerText = obj.genre
-    ratingEdit.innerText = obj.rating
+    gameTitleEdit.value = obj.gameTitle
+    publisherEdit.value = obj.publisher
+    platformEdit.value = obj.platform
+    genreEdit.value = obj.genre
+    ratingEdit.value = obj.rating
 
     updateGamesBtn.setAttribute(`data-games-id`, obj.id)
 }

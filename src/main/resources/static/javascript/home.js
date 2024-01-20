@@ -52,16 +52,14 @@ async function addFavoritesToUser() {
 }
 
 async function deleteFavorites(favoritesId) {
-
-    const response = await fetch(`${baseUrl}/${favoritesId}`, {
+        await fetch(`${baseUrl}/${favoritesId}`, {
         method: "DELETE",
         body: getFavoritesById(),
         headers: headers
     })
-        .catch(err => console.error(err));
-    if (response.status === 200) {
-        return getFavorites(userId);
-    }
+        .catch(err => console.error(err))
+
+    return getFavorites(userId);
 }
 
 async function getFavoritesById(favoritesId) {
