@@ -36,7 +36,9 @@ public class Games {
     private String platform;
 
     @Column
-    private String rating;
+    @Enumerated(EnumType.STRING) // To store the enum as a string in the database
+    private EsrbRating rating;
+
 
     @ManyToMany(mappedBy = "gamesSet", fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JsonBackReference
@@ -57,7 +59,7 @@ public class Games {
             this.genre = gamesDto.getGenre();
         }
         if(gamesDto.getRating() != null){
-            this.rating = gamesDto.getRating();
+            this.rating = EsrbRating.valueOf(gamesDto.getRating());
         }
         if(gamesDto.getPlatform() != null){
             this.platform = gamesDto.getPlatform();

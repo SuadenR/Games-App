@@ -48,7 +48,7 @@ public class GamesDto implements Serializable {
             this.genre = games.getGenre();
         }
         if (games.getRating() != null){
-            this.rating = games.getRating();
+            this.rating = String.valueOf(games.getRating());
         }
         if (games.getPlatform() != null){
             this.platform = games.getPlatform();

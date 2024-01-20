@@ -10,7 +10,7 @@ let gameTitleEdit = document.getElementById("gameTitle-input-edit")
 let publisherEdit = document.getElementById("publisher-input-edit")
 let genreEdit = document.getElementById("genre-input-edit")
 let platformEdit = document.getElementById("platform-input-edit")
-let ratingEdit = document.getElementById("rating-input-edit")
+let ratingSelect = document.getElementById("esrbRatingSelectEdit")
 let updateGamesBtn = document.getElementById("update-games-button")
 
 
@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
         publisher: document.getElementById("publisher-input").value,
         genre: document.getElementById("genre-input").value,
         platform: document.getElementById("platform-input").value,
-        rating: document.getElementById("rating-input").value
+        rating: document.getElementById("esrbRatingSelect").value
 
     }
 
@@ -39,7 +39,7 @@ const handleSubmit = async (e) => {
     document.getElementById("publisher-input").value = ''
     document.getElementById("genre-input").value = ''
     document.getElementById("platform-input").value = ''
-    document.getElementById("rating-input").value = ''
+    document.getElementById("esrbRatingSelect").value = ''
 
 }
 
@@ -67,7 +67,7 @@ async function updateGames(gamesId) {
         publisher: publisherEdit.value,
         genre: genreEdit.value,
         platform: platformEdit.value,
-        rating: ratingEdit.value
+        rating: ratingSelect.value
 
     }
 
@@ -181,7 +181,7 @@ const populateModal = (obj) => {
     publisherEdit.value = obj.publisher
     platformEdit.value = obj.platform
     genreEdit.value = obj.genre
-    ratingEdit.value = obj.rating
+    ratingSelect.value = obj.rating
 
     updateGamesBtn.setAttribute(`data-games-id`, obj.id)
 }
@@ -204,3 +204,20 @@ updateGamesBtn.addEventListener("click", (e) =>{
 })
 
 
+// This script will be executed once the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    fetch(`${baseUrl}/ratings`)
+        .then(response => response.json())
+        .then(ratings => {
+            const ratingSelect = document.getElementById('esrbRatingSelect');
+            ratings.forEach(rating => {
+                const option = document.createElement('option');
+                // Assuming the 'rating' object has a 'ratingCode' property as shown in Java Enum
+                option.value = rating.ratingCode;
+                // Assuming the 'rating' object should display the enum name as text
+                option.textContent = rating; // The rating itself can be the text content if it is a string representation of the enum.
+                ratingSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching ratings:', error));
+});

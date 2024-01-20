@@ -1,6 +1,7 @@
 package com.devmountain.gamesapp.services;
 
 import com.devmountain.gamesapp.dtos.GamesDto;
+import com.devmountain.gamesapp.entities.EsrbRating;
 import com.devmountain.gamesapp.entities.Favorites;
 import com.devmountain.gamesapp.entities.Games;
 import com.devmountain.gamesapp.repositories.FavoritesRepository;
@@ -43,7 +44,7 @@ public class GamesServiceImpl implements GamesService{
             games.setGenre(gamesDto.getGenre());
             games.setPublisher(gamesDto.getPublisher());
             games.setPlatform(gamesDto.getPlatform());
-            games.setRating(gamesDto.getRating());
+            games.setRating(EsrbRating.valueOf(gamesDto.getRating()));
             gamesRepository.saveAndFlush(games);
         });
     }
